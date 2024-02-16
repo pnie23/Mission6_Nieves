@@ -13,6 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
+                <!--Altered Nav Title and added proper navigation links-->
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JH's Film Collection</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -34,12 +35,14 @@
             </div>
         </nav>
     </header>
+    <!--Contains the top image buffer-->
     <div class="blur_image"><br /><br /><br /><br /><br /><br /><br /></div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+    <!--Contains the bottom image buffer-->
     <div class="blur_image_2"><br /><br /><br /><br /><br /><br /><br /></div>
     <footer class="border-top footer text-muted">
         <div class="container">
