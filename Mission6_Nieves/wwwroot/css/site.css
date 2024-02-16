@@ -1,0 +1,129 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.circular-image {
+    width: 500px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+    .circular-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.round_square-image {
+    width: 500px;
+    height: 350px;
+    border-radius: 2%;
+    overflow: hidden;
+}
+
+    .round_square-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+.blur_image {
+    position: relative;
+    background-image: url('../img/movie_set.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    background-position: center 33%;
+    filter: blur(5px);
+    width: 100%;
+}
+
+.blur_image_2 {
+    position: relative;
+    background-image: url('../img/movie_set_2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    background-position: center 45%;
+    filter: blur(5px);
+    width: 100%;
+}
+
+.form-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+    }
+
+.button_container {
+    text-align: center;
+}
+
+.button_submit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 120%;
+
+}
+
+    .button_submit:hover {
+        background-color: #45a049;
+    }

@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Submit to Film Collection";
+}
+
+@model FilmSubmission
+
+@if (ViewBag.showInvalidSubmission != null && (bool)ViewBag.showInvalidSubmission)
+{
+    <script>
+        alert("Required Fields are Missing!");
+    </script>
+}
+
+<br /><br />
+<h1 style="text-align: center">Add to the Film Collection</h1>
+<br /><br />
+
+<div class="form-container form-group">
+    <p>*Required</p>
+    <form method="post">
+        <label asp-for="Category">*Category: </label>
+        <input asp-for="Category" />
+        <br /><br />
+        <label asp-for="Title">*Title: </label>
+        <input asp-for="Title" />
+        <br /><br />
+        <label asp-for="Year">*Year: </label>
+        <input asp-for="Year" />
+        <br /><br />
+        <label asp-for="Director">*Director: </label>
+        <input asp-for="Director" />
+        <br /><br />
+        <label asp-for="Rating">*Film Rating: </label>
+        <select asp-for="Rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select>
+        <br /><br />
+        <label asp-for="Edited">Is the Film Edited?</label>
+        <select asp-for="Edited">Edited?
+            <option value=""></option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <br /><br />
+        <label asp-for="LentTo">Lent To: </label>
+        <input asp-for="LentTo" />
+        <br /><br />
+        <label asp-for="Notes">Notes: </label>
+        <textarea asp-for="Notes" maxlength="25" style="width: 100%"></textarea>
+        <br /><br /><br />
+        <div class="button_container">
+        <!--JS conclick event to confirm user's submission to help avoid accidental submissions-->
+            <button class="button_submit" type="submit" onclick="clicked(event)">Submit Film</button>
+        </div>
+        <br />
+    </form>
+</div>
+<br /><br />
