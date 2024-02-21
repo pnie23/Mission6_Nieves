@@ -45,11 +45,60 @@ namespace Mission6_Nieves.Controllers
             }
 
             else {
-                _context.FilmCollection.Add(response); //Add record to database
+                _context.JoelHiltonMovieCollection.Add(response); //Add record to database
                 _context.SaveChanges();
 
                 return View("FilmSubmitConfirmation", response);
             }
+        }
+
+        public IActionResult CollectionView()
+        {
+            var collection = _context.JoelHiltonMovieCollection
+                .Include(x => x.Category)
+                .ToList();
+
+            return View(collection);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _context.JoelHiltonMovieCollection
+                .Single(x => x.MovieId == id);
+
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            return View("SubmitFilm", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(FilmSubmission updatedInfo)
+        {
+            _context.Update(updatedInfo);
+            _context.SaveChanges();
+
+            return RedirectToAction("CollectionView");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _context.JoelHiltonMovieCollection
+                .Single(x => x.MovieId == id);
+
+            return View(recordToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(FilmSubmission filmSubmission)
+        {
+            _context.JoelHiltonMovieCollection.Remove(filmSubmission);
+            _context.SaveChanges();
+
+            return RedirectToAction("CollectionView");
         }
     }
 }
