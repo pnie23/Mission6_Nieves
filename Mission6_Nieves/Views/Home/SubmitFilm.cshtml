@@ -7,12 +7,12 @@
 
 @model FilmSubmission
 
-@if (ViewBag.showInvalidSubmission != null && (bool)ViewBag.showInvalidSubmission)
+@* @if (ViewBag.showInvalidSubmission != null && (bool)ViewBag.showInvalidSubmission)
 {
     <script>
         alert("Required Fields are Missing!");
     </script>
-}
+} *@
 
 <br /><br />
 <h1 style="text-align: center">Add to the Film Collection</h1>
@@ -25,9 +25,9 @@
 
         <select>
             <option value="">Select a Category</option>
-            @foreach (Category m in ViewBag.Categories)
+            @foreach (Category c in ViewBag.Categories)
             {
-                <option value="@m.CategoryId">*@m.CategoryName</option>
+                <option value="@c.CategoryId">@c.CategoryName</option>
             }
         </select>
         <br /><br />

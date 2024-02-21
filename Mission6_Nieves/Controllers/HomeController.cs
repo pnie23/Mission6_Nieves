@@ -28,6 +28,10 @@ namespace Mission6_Nieves.Controllers
         [HttpGet]
         public IActionResult SubmitFilm()
         {
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
             return View();
         }
 
@@ -40,12 +44,16 @@ namespace Mission6_Nieves.Controllers
             //If the data is correct, then it will submit properly to the database
             if (!ModelState.IsValid)
             {
+                ViewBag.Categories = _context.Categories
+                    .OrderBy(x => x.CategoryName)
+                    .ToList();
+
                 ViewBag.showInvalidSubmission = true;
                 return View();
             }
 
             else {
-                _context.JoelHiltonMovieCollection.Add(response); //Add record to database
+                _context.Movies.Add(response); //Add record to database
                 _context.SaveChanges();
 
                 return View("FilmSubmitConfirmation", response);
@@ -54,17 +62,16 @@ namespace Mission6_Nieves.Controllers
 
         public IActionResult CollectionView()
         {
-            var collection = _context.JoelHiltonMovieCollection
-                .Include(x => x.Category)
-                .ToList();
+            var movies = _context.Movies
+                .OrderBy(x => x.Title).ToList();
 
-            return View(collection);
+            return View(movies);
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var recordToEdit = _context.JoelHiltonMovieCollection
+            var recordToEdit = _context.Movies
                 .Single(x => x.MovieId == id);
 
             ViewBag.Categories = _context.Categories
@@ -86,7 +93,7 @@ namespace Mission6_Nieves.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var recordToDelete = _context.JoelHiltonMovieCollection
+            var recordToDelete = _context.Movies
                 .Single(x => x.MovieId == id);
 
             return View(recordToDelete);
@@ -95,7 +102,7 @@ namespace Mission6_Nieves.Controllers
         [HttpPost]
         public IActionResult Delete(FilmSubmission filmSubmission)
         {
-            _context.JoelHiltonMovieCollection.Remove(filmSubmission);
+            _context.Movies.Remove(filmSubmission);
             _context.SaveChanges();
 
             return RedirectToAction("CollectionView");

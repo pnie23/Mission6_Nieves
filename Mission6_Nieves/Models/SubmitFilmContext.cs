@@ -8,7 +8,7 @@ namespace Mission6_Nieves.Models
         { 
         }
 
-        public DbSet<FilmSubmission> JoelHiltonMovieCollection { get; set; }
+        public DbSet<FilmSubmission> Movies { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Seed Data 
