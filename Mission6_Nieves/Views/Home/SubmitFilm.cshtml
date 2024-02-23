@@ -7,13 +7,6 @@
 
 @model FilmSubmission
 
-@* @if (ViewBag.showInvalidSubmission != null && (bool)ViewBag.showInvalidSubmission)
-{
-    <script>
-        alert("Required Fields are Missing!");
-    </script>
-} *@
-
 <br /><br />
 <h1 style="text-align: center">Add to the Film Collection</h1>
 <br /><br />
@@ -21,9 +14,10 @@
 <div class="form-container form-group">
     <p>*Required</p>
     <form method="post">
+        <div asp-validation-summary="All"></div>
         <input type="hidden" asp-for="MovieId" />
-
-        <select>
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId">
             <option value="">Select a Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
@@ -32,15 +26,15 @@
         </select>
         <br /><br />
         <label asp-for="Title">*Title: </label>
-        <input asp-for="Title" />
+        <input asp-for="Title"/>
         <br /><br />
         <label asp-for="Year">*Year: </label>
-        <input asp-for="Year" />
+        <input asp-for="Year"/>
         <br /><br />
-        <label asp-for="Director">*Director: </label>
+        <label asp-for="Director">Director: </label>
         <input asp-for="Director" />
         <br /><br />
-        <label asp-for="Rating">*Film Rating: </label>
+        <label asp-for="Rating">Film Rating: </label>
         <select asp-for="Rating">
             <option value="G">G</option>
             <option value="PG">PG</option>
@@ -48,16 +42,14 @@
             <option value="R">R</option>
         </select>
         <br /><br />
-        <label asp-for="Edited">Is the Film Edited?</label>
+        <label asp-for="Edited">*Is the Film Edited?</label>
         <select asp-for="Edited">Edited?
-            <option value=""></option>
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select>
         <br /><br />
-        <label asp-for="CopiedToPlex">Is the Film on Plex?</label>
+        <label asp-for="CopiedToPlex">*Is the Film on Plex?</label>
         <select asp-for="CopiedToPlex">Plex?
-            <option value=""></option>
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select>

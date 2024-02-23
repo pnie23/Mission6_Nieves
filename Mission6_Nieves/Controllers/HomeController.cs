@@ -32,7 +32,7 @@ namespace Mission6_Nieves.Controllers
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-            return View();
+            return View("SubmitFilm", new FilmSubmission());
         }
 
         [HttpPost]
@@ -42,17 +42,16 @@ namespace Mission6_Nieves.Controllers
             //If not, the page will display an error saying that the form is missing required fields.
             //The user can then fix their input, rather than have to go back to another page
             //If the data is correct, then it will submit properly to the database
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) //invalid data
             {
                 ViewBag.Categories = _context.Categories
                     .OrderBy(x => x.CategoryName)
                     .ToList();
 
-                ViewBag.showInvalidSubmission = true;
                 return View();
             }
 
-            else {
+            else { //valid data
                 _context.Movies.Add(response); //Add record to database
                 _context.SaveChanges();
 
@@ -64,6 +63,9 @@ namespace Mission6_Nieves.Controllers
         {
             var movies = _context.Movies
                 .OrderBy(x => x.Title).ToList();
+
+            ViewBag.Categories = _context.Categories
+                .ToList();
 
             return View(movies);
         }
@@ -87,7 +89,7 @@ namespace Mission6_Nieves.Controllers
             _context.Update(updatedInfo);
             _context.SaveChanges();
 
-            return RedirectToAction("CollectionView");
+            return RedirectToAction("SubmitFilm");
         }
 
         [HttpGet]

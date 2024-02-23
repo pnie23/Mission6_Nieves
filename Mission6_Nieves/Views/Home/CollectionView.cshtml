@@ -3,13 +3,17 @@
 *@
 @{
 }
+@{
+    ViewData["Title"] = "The Joel Hilton Film Collection";
+}
 
 @model List<FilmSubmission>
+
 <br /><br />
 <h2>Joel Hilton's Film Collection</h2>
 <br /><br />
-<table class="table table-bordered">
-    <thead class="fw-bold">
+<table class="table table-bordered table-light">
+    <thead class="fw-bold table-active">
         <tr>
             <td>Category</td>
             <td>Title</td>
@@ -20,6 +24,8 @@
             <td>LentTo</td>
             <td>CopiedToPlex</td>
             <td>Notes</td>
+            <td></td>
+            <td></td>
         </tr>
     </thead>
 
@@ -27,7 +33,9 @@
     {
         <tbody>
             <tr>
-                <td>@x.CategoryId</td>
+                <!-- Show Category Name rather than ID in table !-->
+                <!-- Since the category is not required, if it missing a category, it is replaced with No Category rather than null for the web view table -->
+                <td>@(x.Category?.CategoryName ?? "No Category")</td>
                 <td>@x.Title</td>
                 <td>@x.Year</td>
                 <td>@x.Director</td>
@@ -37,7 +45,7 @@
                 <td>@x.CopiedToPlex</td>
                 <td>@x.Notes</td>
 
-                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
+                <td><a class="btn btn-outline-dark" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
                 <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">Delete</a></td>
             </tr>
         </tbody>

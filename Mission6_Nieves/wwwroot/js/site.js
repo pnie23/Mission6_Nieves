@@ -5,8 +5,3 @@
         e.preventDefault();
     }
 }
-
-function showInvalidSubmission(message)
-{
-    alert(message);
-}

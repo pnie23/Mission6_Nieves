@@ -3,13 +3,23 @@
 *@
 @{
 }
+@{
+    ViewData["Title"] = "Deletion Confirmation";
+}
 
+<!-- Deletion Confirmation Page -->
 @model FilmSubmission
 
-<h2>Confirm Deletion</h2>
-<h3>Delete @Model.Title?</h3>
-<form method="post">
-    <input type="hidden" asp-for="MovieId" />
-    <button type="submit">Delete</button>
-    <a class="btn btn-info" asp-controller="Home" asp-action="CollectionView">Cancel</a>
-</form>
+<br /><br />
+<div class="form-container" style="text-align: center">
+    <h2>Confirm Deletion:</h2>
+    <br />
+    <h3>Remove "@Model.Title" from the Film Collection?</h3>
+    <br />
+    <form method="post">
+        <input type="hidden" asp-for="MovieId" />
+        <button class="btn btn-danger" type="submit">Delete</button>
+        <a class="btn btn-outline-dark" asp-controller="Home" asp-action="CollectionView">Cancel</a>
+    </form>
+</div>
+<br /><br />
